@@ -1,3 +1,13 @@
+/* ————— Palette: paper stock and ink ————— */
+:root {
+  --desk: #d9d5cb;          /* surface the card rests on */
+  --paper: #f9f6ee;         /* cream card stock */
+  --ink: #26231e;           /* printed ink, softer than pure black */
+  --faded: #8b8477;         /* secondary ink */
+  --muted: #aca389;         /* tertiary ink */
+  --edge: rgba(60, 50, 30, 0.10);
+}
+
 /* ————— Page ————— */
 * {
   margin: 0;
@@ -11,9 +21,9 @@ body {
 }
 
 body {
-  background: #f4f4f2;
-  color: #0a0a0a;
-  font-family: system-ui, sans-serif;
+  background: var(--desk);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 400;
   display: grid;
   place-items: center;
@@ -66,24 +76,24 @@ body {
   }
 }
 
-/* ————— Faces ————— */
+/* ————— Faces: cut card stock ————— */
 .face {
   position: absolute;
   inset: 0;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
+  background: var(--paper);
+  border: 1px solid var(--edge);       /* the cut edge of the stock */
+  border-radius: 5px;                  /* crisp print-shop corner rounding */
+  box-shadow: 0 2px 24px rgba(50, 42, 28, 0.18), 0 1px 4px rgba(50, 42, 28, 0.08);
   overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  text-align: left;
 }
 
 .face--front {
   padding: 32px 36px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .face--back {
@@ -102,21 +112,34 @@ button {
   cursor: pointer;
 }
 
-/* ————— Front ————— */
+/* ————— Front: engraved, centered name ————— */
+.face--front header {
+  text-align: center;
+  margin-bottom: 24px;                 /* optically recenter above the footer */
+}
+
 .name {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 400;
   line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  padding-left: 0.22em;                /* balance trailing letter-space when centered */
 }
 
 .meta {
-  margin-top: 4px;
+  margin-top: 10px;
   font-size: 12px;
-  font-weight: 400;
-  color: #888;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--faded);
 }
 
 .front-footer {
+  position: absolute;
+  left: 36px;
+  right: 36px;
+  bottom: 28px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -125,14 +148,14 @@ button {
 .contact {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   font-size: 11px;
-  color: #bbb;
+  color: var(--muted);
   min-width: 0;
 }
 
 .contact a {
-  color: #bbb;
+  color: var(--muted);
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
@@ -141,24 +164,28 @@ button {
 
 .contact a:hover {
   text-decoration: underline;
+  color: var(--ink);
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
+  align-items: flex-start;
 }
 
 .nav button {
   position: relative;
-  font-size: 11px;
-  color: #bbb;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
   line-height: 1.5;
 }
 
 .nav button:hover,
 .nav button.is-active {
-  color: #0a0a0a;
+  color: var(--ink);
 }
 
 .nav button.is-active::before {
@@ -170,14 +197,14 @@ button {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: #0a0a0a;
+  background: var(--ink);
 }
 
 /* ————— Back panels ————— */
 .panel {
   position: absolute;
   inset: 0;
-  padding: 32px 36px;
+  padding: 30px 36px 28px;
   display: flex;
   flex-direction: column;
 }
@@ -190,15 +217,17 @@ button {
   font-size: 10px;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #bbb;
+  letter-spacing: 0.22em;
+  padding-left: 0.22em;                /* balance trailing letter-space when centered */
+  color: var(--muted);
+  text-align: center;
 }
 
 .rows {
   list-style: none;
-  margin-top: 16px;
-  font-size: 12px;
-  line-height: 1.6;
+  margin-top: 22px;
+  font-size: 12.5px;
+  line-height: 1.7;
 }
 
 .rows li {
@@ -208,13 +237,13 @@ button {
 }
 
 .rows .year {
-  color: #bbb;
+  color: var(--muted);
   flex: 0 0 76px;
   white-space: nowrap;
 }
 
 .rows .what {
-  color: #0a0a0a;
+  color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -226,7 +255,7 @@ button {
 }
 
 .rows--writing .title {
-  color: #0a0a0a;
+  color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -237,14 +266,16 @@ button {
   text-align: right;
 }
 
-/* Back link */
+/* Back link: the name again, engraved small */
 .back {
   margin-top: auto;
-  font-size: 11px;
-  color: #bbb;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
   align-self: flex-start;
 }
 
 .back:hover {
-  color: #0a0a0a;
+  color: var(--ink);
 }
