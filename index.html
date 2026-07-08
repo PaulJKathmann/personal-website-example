@@ -9,63 +9,67 @@
 </head>
 <body>
 
-  <main class="stack" id="stack">
+  <main class="stack" id="stack" aria-label="Business card">
+    <div class="flipper" id="flipper">
 
-    <!-- Front -->
-    <section class="card card--front is-active" data-card="front" aria-label="Business card">
-      <header>
-        <h1 class="name">Paul Kathmann</h1>
-        <p class="meta">Software Engineer&nbsp;·&nbsp;Freelance</p>
-      </header>
-      <footer class="front-footer">
-        <div class="contact">
-          <span>Berlin</span>
-          <a href="mailto:paul.kathmann.98@gmail.com">paul.kathmann.98@gmail.com</a>
-          <a href="https://github.com/pauljkathmann" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/pauljkathmann" target="_blank" rel="noopener">LinkedIn</a>
+      <!-- Front side -->
+      <section class="face face--front" data-face="front">
+        <header>
+          <h1 class="name">Paul Kathmann</h1>
+          <p class="meta">Software Engineer&nbsp;·&nbsp;Freelance</p>
+        </header>
+        <footer class="front-footer">
+          <div class="contact">
+            <span>Berlin</span>
+            <a href="mailto:paul.kathmann.98@gmail.com">paul.kathmann.98@gmail.com</a>
+            <a href="https://github.com/pauljkathmann" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/pauljkathmann" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <nav class="nav" aria-label="Sections">
+            <button type="button" data-target="experience">Experience</button>
+            <button type="button" data-target="education">Education</button>
+            <button type="button" data-target="writing">Writing</button>
+          </nav>
+        </footer>
+      </section>
+
+      <!-- Back side: one panel shown at a time -->
+      <section class="face face--back" data-face="back" inert>
+
+        <div class="panel" data-panel="experience" hidden>
+          <p class="label">Experience</p>
+          <ul class="rows">
+            <li><span class="year">2024–Now</span><span class="what">Software Engineer, Freelance</span></li>
+            <li><span class="year">2022–2024</span><span class="what">Software Engineer, Acme GmbH</span></li>
+            <li><span class="year">2020–2022</span><span class="what">Frontend Developer, Studio Nord</span></li>
+            <li><span class="year">2019–2020</span><span class="what">Working Student, Datenwerk</span></li>
+          </ul>
+          <button type="button" class="back" data-target="front">Paul Kathmann</button>
         </div>
-        <nav class="nav" aria-label="Sections">
-          <button type="button" data-target="experience">Experience</button>
-          <button type="button" data-target="education">Education</button>
-          <button type="button" data-target="writing">Writing</button>
-        </nav>
-      </footer>
-    </section>
 
-    <!-- Experience -->
-    <section class="card" data-card="experience" inert aria-label="Experience">
-      <p class="label">Experience</p>
-      <ul class="rows">
-        <li><span class="year">2024–Now</span><span class="what">Software Engineer, Freelance</span></li>
-        <li><span class="year">2022–2024</span><span class="what">Software Engineer, Acme GmbH</span></li>
-        <li><span class="year">2020–2022</span><span class="what">Frontend Developer, Studio Nord</span></li>
-        <li><span class="year">2019–2020</span><span class="what">Working Student, Datenwerk</span></li>
-      </ul>
-      <button type="button" class="back" data-target="front">Paul Kathmann</button>
-    </section>
+        <div class="panel" data-panel="education" hidden>
+          <p class="label">Education</p>
+          <ul class="rows">
+            <li><span class="year">2021</span><span class="what">M.Sc. Computer Science, TU Berlin</span></li>
+            <li><span class="year">2019</span><span class="what">B.Sc. Computer Science, TU Berlin</span></li>
+          </ul>
+          <button type="button" class="back" data-target="front">Paul Kathmann</button>
+        </div>
 
-    <!-- Education -->
-    <section class="card" data-card="education" inert aria-label="Education">
-      <p class="label">Education</p>
-      <ul class="rows">
-        <li><span class="year">2021</span><span class="what">M.Sc. Computer Science, TU Berlin</span></li>
-        <li><span class="year">2019</span><span class="what">B.Sc. Computer Science, TU Berlin</span></li>
-      </ul>
-      <button type="button" class="back" data-target="front">Paul Kathmann</button>
-    </section>
+        <div class="panel" data-panel="writing" hidden>
+          <p class="label">Writing</p>
+          <ul class="rows rows--writing">
+            <li><span class="title">On Building Small Things</span><span class="year">2025</span></li>
+            <li><span class="title">Notes on Plain HTML</span><span class="year">2024</span></li>
+            <li><span class="title">The Case for Boring Tools</span><span class="year">2024</span></li>
+            <li><span class="title">Designing with Constraints</span><span class="year">2023</span></li>
+          </ul>
+          <button type="button" class="back" data-target="front">Paul Kathmann</button>
+        </div>
 
-    <!-- Writing -->
-    <section class="card" data-card="writing" inert aria-label="Writing">
-      <p class="label">Writing</p>
-      <ul class="rows rows--writing">
-        <li><span class="title">On Building Small Things</span><span class="year">2025</span></li>
-        <li><span class="title">Notes on Plain HTML</span><span class="year">2024</span></li>
-        <li><span class="title">The Case for Boring Tools</span><span class="year">2024</span></li>
-        <li><span class="title">Designing with Constraints</span><span class="year">2023</span></li>
-      </ul>
-      <button type="button" class="back" data-target="front">Paul Kathmann</button>
-    </section>
+      </section>
 
+    </div>
   </main>
 
   <script src="script.js"></script>

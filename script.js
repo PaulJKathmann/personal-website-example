@@ -1,36 +1,38 @@
 (function () {
   var stack = document.getElementById('stack');
-  var cards = {};
-  stack.querySelectorAll('.card').forEach(function (card) {
-    cards[card.dataset.card] = card;
+  var flipper = document.getElementById('flipper');
+  var frontFace = flipper.querySelector('.face--front');
+  var backFace = flipper.querySelector('.face--back');
+  var navButtons = flipper.querySelectorAll('.nav button');
+
+  var panels = {};
+  backFace.querySelectorAll('.panel').forEach(function (panel) {
+    panels[panel.dataset.panel] = panel;
   });
 
-  var navButtons = stack.querySelectorAll('.nav button');
   var current = 'front';
 
   function show(name) {
-    if (name === current || !cards[name]) return;
-
-    var front = cards.front;
+    if (name === current) return;
 
     if (name === 'front') {
-      // Reverse: section slides out right, front slides in from the left.
-      cards[current].classList.remove('is-active');
-      front.classList.remove('is-left');
-      front.classList.add('is-active');
+      // Flip back over to the front (reverse rotation).
+      flipper.classList.remove('flip-back');
+      flipper.classList.add('flip-front');
     } else {
-      // Forward: front slides out left, section slides in from the right.
-      front.classList.remove('is-active');
-      front.classList.add('is-left');
-      cards[name].classList.add('is-active');
+      // Put the chosen section on the back side, then flip the card over.
+      Object.keys(panels).forEach(function (key) {
+        panels[key].hidden = key !== name;
+      });
+      flipper.classList.remove('flip-front');
+      flipper.classList.add('flip-back');
     }
 
     current = name;
 
-    // Keep hidden cards out of the tab order.
-    Object.keys(cards).forEach(function (key) {
-      cards[key].toggleAttribute('inert', key !== current);
-    });
+    // Keep the hidden side out of the tab order.
+    frontFace.toggleAttribute('inert', current !== 'front');
+    backFace.toggleAttribute('inert', current === 'front');
 
     // Dot next to the active nav item.
     navButtons.forEach(function (btn) {
